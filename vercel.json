@@ -1,0 +1,7 @@
+{
+    "version" : 0,
+    "rewrites" : [{
+        "source" : "/studio/(.*)",
+        "destination" : "/studio/index.html"
+    }]
+}
