@@ -81,7 +81,11 @@ const Container = (props) => {
             <NavItem href="/blog" text="Blog" />
             <NavItem href="/snippets" text="Snippet" />
           </div>
-          <button>
+          <button
+            onClick={() =>
+              setTheme(resolvedTheme === "dark" ? "light" : "dark")
+            }
+          >
             {mounted && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
