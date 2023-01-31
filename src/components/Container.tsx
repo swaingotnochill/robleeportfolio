@@ -7,7 +7,7 @@ import Head from "next/head";
 import MobileMenu from "./MobileMenu";
 import Footer from "./Footer";
 
-const NavItem = ({ href, text }) => {
+function NavItem({ href, text }) {
   const router = useRouter();
   const isActive = router.asPath === href;
 
@@ -24,9 +24,9 @@ const NavItem = ({ href, text }) => {
       <span className="capsize">{text}</span>
     </NextLink>
   );
-};
+}
 
-const Container = (props) => {
+export default function Container(props) {
   const [mounted, setMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
 
@@ -42,7 +42,7 @@ const Container = (props) => {
     ...customMeta,
   };
   return (
-    <div>
+    <div className="bg-gray-50 dark:bg-gray-900">
       <Head>
         {/* SEO Stuff going on here */}
         <title>{meta.title}</title>
@@ -63,13 +63,13 @@ const Container = (props) => {
         <meta property="twitter:title" content={meta.title} />
         <meta property="twitter:image" content={meta.image} />
         <meta property="twitter:description" content={meta.description} />
-        {meta.data && (
-          <meta property="article:published_time" content={meta.data} />
+        {meta.date && (
+          <meta property="article:published_time" content={meta.date} />
         )}
       </Head>
 
-      <div>
-        <nav>
+      <div className="flex flex-col justify-center px-8">
+        <nav className="relative mx-auto flex w-full max-w-2xl items-center justify-between border-gray-200 bg-gray-50 pt-8 pb-8 text-gray-900 dark:border-gray-700 dark:bg-gray-900 sm:pb-16 ">
           <a href="#skip" className="skip-nav">
             Skip to content
           </a>
@@ -82,9 +82,10 @@ const Container = (props) => {
             <NavItem href="/snippets" text="Snippet" />
           </div>
           <button
-            onClick={() =>
-              setTheme(resolvedTheme === "dark" ? "light" : "dark")
-            }
+            onClick={() => {
+              console.log("Clicked!!!");
+              return setTheme(resolvedTheme === "dark" ? "light" : "dark");
+            }}
           >
             {mounted && (
               <svg
@@ -120,6 +121,4 @@ const Container = (props) => {
       </main>
     </div>
   );
-};
-
-export default Container;
+}
