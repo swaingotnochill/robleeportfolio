@@ -73,7 +73,7 @@ export default function Container(props) {
           <a href="#skip" className="skip-nav">
             Skip to content
           </a>
-          <div>
+          <div className="ml-[-0.60rem]">
             <MobileMenu />
             <NavItem href="/" text="Home" />
             <NavItem href="/guestbook" text="Guestbook" />
@@ -82,6 +82,9 @@ export default function Container(props) {
             <NavItem href="/snippets" text="Snippet" />
           </div>
           <button
+            aria-label="Toogle Dark Mode"
+            type="button"
+            className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-200 ring-gray-300 transition-all hover:ring-2 dark:bg-gray-600"
             onClick={() => {
               console.log("Clicked!!!");
               return setTheme(resolvedTheme === "dark" ? "light" : "dark");
@@ -115,7 +118,10 @@ export default function Container(props) {
           </button>
         </nav>
       </div>
-      <main>
+      <main
+        id="skip"
+        className="flex flex-col justify-center bg-gray-50 px-8 dark:bg-gray-900"
+      >
         {children}
         <Footer />
       </main>

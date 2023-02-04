@@ -52,12 +52,17 @@ const CrossIcon = (props: JSX.IntrinsicElements["svg"]) => {
     </svg>
   );
 };
-const MobileMenu = () => {
+export default function MobileMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { mounted: isMenuMounted, rendered: isMenuRendered } =
-    useDelayedRender();
+  const { mounted: isMenuMounted, rendered: isMenuRendered } = useDelayedRender(
+    isMenuOpen,
+    {
+      enterDelay: 20,
+      exitDelay: 300,
+    }
+  );
 
-  const toggleMenu = () => {
+  function toggleMenu() {
     if (isMenuOpen) {
       setIsMenuOpen(false);
       document.body.style.overflow = "";
@@ -65,7 +70,7 @@ const MobileMenu = () => {
       setIsMenuOpen(true);
       document.body.style.overflow = "hidden";
     }
-  };
+  }
 
   useEffect(() => {
     return function cleanup() {
@@ -75,7 +80,12 @@ const MobileMenu = () => {
 
   return (
     <>
-      <button>
+      <button
+        className={cn(styles.burger, "visible md:hidden")}
+        aria-label="Toogle menu"
+        type="button"
+        onClick={toggleMenu}
+      >
         <MenuIcon data-hide={isMenuOpen} />
         <CrossIcon data-hide={!isMenuOpen} />
       </button>
@@ -91,8 +101,8 @@ const MobileMenu = () => {
             className="border-b border-gray-300 text-sm font-semibold text-gray-900 dark:border-gray-700 dark:text-gray-100"
             style={{ transitionDelay: "150ms" }}
           >
-            <Link href="/" className="flex w-auto pb-4">
-              Home
+            <Link href="/">
+              <a className="flex w-auto pb-4">Home</a>
             </Link>
           </li>
 
@@ -100,8 +110,8 @@ const MobileMenu = () => {
             className="border-b border-gray-300 text-sm font-semibold text-gray-900 dark:border-gray-700 dark:text-gray-100"
             style={{ transitionDelay: "175ms" }}
           >
-            <Link href="/guestbook" className="flex w-auto pb-4">
-              GuestBook
+            <Link href="/guestbook">
+              <a className="flex w-auto pb-4">GuestBook</a>
             </Link>
           </li>
 
@@ -109,8 +119,8 @@ const MobileMenu = () => {
             className="border-b border-gray-300 text-sm font-semibold text-gray-900 dark:border-gray-700 dark:text-gray-100"
             style={{ transitionDelay: "200ms" }}
           >
-            <Link href="/dashboard" className="flex w-auto pb-4">
-              Dashboard
+            <Link href="/dashboard">
+              <a className="flex w-auto pb-4">Dashboard</a>
             </Link>
           </li>
 
@@ -118,8 +128,8 @@ const MobileMenu = () => {
             className="border-b border-gray-300 text-sm font-semibold text-gray-900 dark:border-gray-700 dark:text-gray-100"
             style={{ transitionDelay: "225ms" }}
           >
-            <Link href="/blog" className="flex w-auto pb-4">
-              Blog
+            <Link href="/blog">
+              <a className="flex w-auto pb-4">Blog</a>
             </Link>
           </li>
 
@@ -127,8 +137,8 @@ const MobileMenu = () => {
             className="border-b border-gray-300 text-sm font-semibold text-gray-900 dark:border-gray-700 dark:text-gray-100"
             style={{ transitionDelay: "250ms" }}
           >
-            <Link href="/snippets" className="flex w-auto pb-4">
-              Snippets
+            <Link href="/snippets">
+              <a className="flex w-auto pb-4">Snippets</a>
             </Link>
           </li>
 
@@ -136,8 +146,8 @@ const MobileMenu = () => {
             className="border-b border-gray-300 text-sm font-semibold text-gray-900 dark:border-gray-700 dark:text-gray-100"
             style={{ transitionDelay: "300ms" }}
           >
-            <Link href="/newsletter" className="flex w-auto pb-4">
-              Newsletter
+            <Link href="/newsletter">
+              <a className="flex w-auto pb-4">Newsletter</a>
             </Link>
           </li>
 
@@ -145,8 +155,8 @@ const MobileMenu = () => {
             className="border-b border-gray-300 text-sm font-semibold text-gray-900 dark:border-gray-700 dark:text-gray-100"
             style={{ transitionDelay: "325ms" }}
           >
-            <Link href="/" className="flex w-auto pb-4">
-              Tweets
+            <Link href="/">
+              <a className="flex w-auto pb-4">Tweets</a>
             </Link>
           </li>
 
@@ -154,14 +164,12 @@ const MobileMenu = () => {
             className="border-b border-gray-300 text-sm font-semibold text-gray-900 dark:border-gray-700 dark:text-gray-100"
             style={{ transitionDelay: "350ms" }}
           >
-            <Link href="/" className="flex w-auto pb-4">
-              Uses
+            <Link href="/">
+              <a className="flex w-auto pb-4">Uses</a>
             </Link>
           </li>
         </ul>
       )}
     </>
   );
-};
-
-export default MobileMenu;
+}

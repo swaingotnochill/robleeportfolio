@@ -10,7 +10,7 @@ export default function Home() {
         <div className="mx-auto flex max-w-2xl flex-col items-start justify-center border-gray-200 pb-16 dark:border-gray-700">
           <div className="flex flex-col-reverse items-start sm:flex-row">
             <div className="flex flex-col pr-8">
-              <h1 className="mb-1 text-3xl font-bold tracking-tight text-black  md:text-5xl">
+              <h1 className="mb-1 text-3xl font-bold tracking-tight text-black dark:text-white  md:text-5xl">
                 Roshan Swain
               </h1>
               {/* TODO: Dark mode for name is not working. Removed the dark:text-white css. Fix it. */}
